@@ -28,8 +28,8 @@ public class Inputcomand {
 
     public void inputPath() {
         System.out.println("Введите полный путь или имя файлa в папке по адресу "
-                + System.getProperty("user.home") + "\\Documents\\Learn_IBS\\TestFiles\\" + ": ");
-
+                + System.getProperty("user.home") + "\\Documents\\Learn_IBS\\HW_J8_Kondratov\\Test Files\\" + ": ");
+    //    C:\Users\User\Documents\Learn_IBS\HW_J8_Kondratov\Test Files\myjson.json
         Scanner in = new Scanner(System.in);
         String inputPath = in.nextLine();
         if (!inputPath.isEmpty()) {
@@ -42,7 +42,8 @@ public class Inputcomand {
                     this.inputPath();
                 }
             } else if (!inputPath.isEmpty()) {
-                path = System.getProperty("user.home") + "\\Documents\\Learn_IBS\\TestFiles\\" + inputPath;
+                path = System.getProperty("user.home") + "\\Documents\\Learn_IBS\\HW_J8_Kondratov\\Test Files\\" + inputPath;
+                System.out.println(path);
                 if (new File(path).exists()) {
                     run(path);
                 } else {
@@ -58,7 +59,7 @@ public class Inputcomand {
     }
 
     private void inputDataReader() {
-
+        System.out.println("введите дату, чтобы узнать какие компании основаны с тех пор:");
         if (jsonReader == null) {
             inputPath();
         }

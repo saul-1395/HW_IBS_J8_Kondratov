@@ -88,12 +88,14 @@ public class JSONReader {
                         String s = "Бумага: " + x.getName() + " актуально до: " +
                                 dateHelper.dateConverter(x.getTerminate(), dateType.TYPE1, dateType.TYPE2) + " владелец: " + y.getOrganisations().getName();
                         System.out.println(s);
-                        return x;
+                        return s;
                     })
                     .count();
 
             return true;
         }).count();
+
+
 
         for (long l : counter) {
             count += l;

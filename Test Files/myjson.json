@@ -1,0 +1,149 @@
+[
+  {
+    "organisations": {
+      "addres": "Moscow",
+      "name": "FGUP",
+      "foundation": "31.01.1998",
+      "phoneNumbers": [
+        {
+          "number": "141 111-1234"
+        },
+        {
+          "number": "141 111-5834"
+        }
+      ],
+      "inn": "4564897746789",
+      "ogrn": "455555444147",
+      "securities": [
+        {
+          "name": "NEFT",
+          "id": "156123",
+          "terminate": "31.01.2021",
+          "currency":          [
+            "EU",
+            "RUB",
+            "USD"
+          ]
+        },
+        {
+          "name": "GAZ",
+          "id": "156789",
+          "terminate": "17.01.2021",
+          "currency":          [
+            "EU",
+            "RUB",
+            "USD"
+          ]
+        },
+        {
+          "name": "SHLAK",
+          "id": "156852",
+          "terminate": "17.02.2021",
+          "currency":          [
+            "EU",
+            "RUB",
+            "USD"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "organisations": {
+      "addres": "Moscow",
+      "name": "FLUP",
+      "foundation": "17.01.1998",
+      "phoneNumbers": [
+        {
+          "number": "141 111-1234"
+        },
+        {
+          "number": "141 111-5834"
+        }
+      ],
+      "inn": "4564897746789",
+      "ogrn": "455555444147",
+      "securities": [
+        {
+          "name": "SHPACK",
+          "id": "156123",
+          "terminate": "30.01.2021",
+          "currency":          [
+            "EU",
+
+            "USD"
+          ]
+        },
+        {
+          "name": "VODA",
+          "id": "156789",
+          "terminate": "17.01.2021",
+          "currency":          [
+            "EU",
+            "RUB",
+            "USD"
+          ]
+        },
+        {
+          "name": "MILK",
+          "id": "156852",
+          "terminate": "17.01.2021",
+          "currency":          [
+            "EU",
+
+            "USD"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "organisations": {
+      "addres": "Moscow",
+      "name": "BANK",
+      "foundation": "18.03.2006",
+      "phoneNumbers": [
+        {
+          "number": "84956235665"
+        },
+        {
+          "number": "84956235456"
+        }
+      ],
+      "inn": "4564897746753",
+      "ogrn": "4555554441159",
+      "securities": [
+        {
+          "name": "DIAMOND",
+          "id": "176456",
+          "terminate": "30.01.2021",
+          "currency":          [
+            "EU",
+            "RUB",
+            "USD"
+          ]
+        },
+        {
+          "name": "ALMAZ",
+          "id": "357789",
+          "terminate": "17.01.2021",
+          "currency":          [
+            "EU",
+
+            "USD"
+          ]
+        },
+        {
+          "name": "KAMAZ",
+          "id": "852852",
+          "terminate": "17.02.2021",
+          "currency":          [
+            "EU",
+            "RUB",
+            "USD"
+          ]
+        }
+      ]
+    }
+  }
+]
