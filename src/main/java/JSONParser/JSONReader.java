@@ -2,8 +2,8 @@ package JSONParser;
 
 
 import DateHelper.DateHelper;
-import DateHelper.DateType.dateType;
-import InputInterface.Currency;
+import DateHelper.DateType;
+import Currencies.Currency;
 import Model.Company;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,7 +36,7 @@ public class JSONReader {
 
     }
 
-    public void organisationListAfterDate(String inputDate, dateType dateType) {
+    public void organisationListAfterDate(String inputDate, DateType dateType) {
         if (list != null) {
             getJSONlist();
         }
@@ -49,7 +49,7 @@ public class JSONReader {
 
     }
 
-    public void getSecuritiesFromCurrency(Currency.currency currency) {
+    public void getSecuritiesFromCurrency(Currency currency) {
         System.out.println(" Бумаги в которых используется валюта " + currency.getCurrency());
         list.stream()
                 .forEach(x -> Arrays.stream(x.getOrganisations().getSecurities())
@@ -69,7 +69,7 @@ public class JSONReader {
 
         list.stream().map(x ->
                 "Организация: " + x.getOrganisations().
-                        getName() + " основана в: " + dateHelper.dateConverter(x.getOrganisations().getFoundation(), dateType.TYPE1, dateType.TYPE2)
+                        getName() + " основана в: " + dateHelper.dateConverter(x.getOrganisations().getFoundation(), DateType.TYPE1, DateType.TYPE2)
 
         ).forEach(System.out::println);
     }
@@ -83,10 +83,10 @@ public class JSONReader {
         long count = 0l;
         list.stream().filter(y -> {
             counter[0] = counter[0] + Arrays.stream(y.getOrganisations().getSecurities())
-                    .filter(x -> dateHelper.stillValid(x.getTerminate(), dateType.TYPE1))
+                    .filter(x -> dateHelper.stillValid(x.getTerminate(), DateType.TYPE1))
                     .map(x -> {
                         String s = "Бумага: " + x.getName() + " актуально до: " +
-                                dateHelper.dateConverter(x.getTerminate(), dateType.TYPE1, dateType.TYPE2) + " владелец: " + y.getOrganisations().getName();
+                                dateHelper.dateConverter(x.getTerminate(), DateType.TYPE1, DateType.TYPE2) + " владелец: " + y.getOrganisations().getName();
                         System.out.println(s);
                         return s;
                     })

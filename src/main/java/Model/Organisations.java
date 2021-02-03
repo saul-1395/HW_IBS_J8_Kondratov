@@ -14,7 +14,7 @@ public class Organisations {
 
     private String foundation;
 
-    private PhoneNumbers[] phoneNumbers;
+    private String phonenumber;
 
     private Securities[] securities;
 
@@ -43,9 +43,7 @@ public class Organisations {
         return foundation;
     }
 
-    public PhoneNumbers[] getPhoneNumbers() {
-        return phoneNumbers;
-    }
+    public String getPhonenumber() {return phonenumber;}
 
     public Securities[] getSecurities() {
         return securities;

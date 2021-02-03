@@ -6,10 +6,6 @@ public class Company {
     public Company() {
     }
 
-//    public Build(Model.Organisations organisations) {
-//        this.organisations = organisations;
-//    }
-
     public Organisations getOrganisations() {
         return organisations;
     }

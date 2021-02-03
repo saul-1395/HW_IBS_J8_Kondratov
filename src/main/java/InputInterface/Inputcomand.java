@@ -1,87 +1,58 @@
 package InputInterface;
 
 
-import DateHelper.DateType.dateType;
+import Currencies.Currency;
+import DateHelper.DateType;
 import JSONParser.JSONReader;
 
-import java.io.File;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+
 public class Inputcomand {
     private JSONReader jsonReader = null;
-    private String path;
 
 
-    private void run(String path) {
 
-        jsonReader = new JSONReader(path);
+    public void appStart() {
+
+        jsonReader = new JSONReader("src/Test Files/myjson.json");
         System.out.println("В базе имеются компании: ");
         jsonReader.organisationsList();
         System.out.println();
         System.out.println("Данные по актуальным бумагам: ");
         jsonReader.securitiesValidListPrint();
         inputDataReader();
+        inputCurrencies();
     }
 
-    public void inputPath() {
-        System.out.println("Введите полный путь или имя файлa в папке по адресу "
-                + System.getProperty("user.home") + "\\Documents\\Learn_IBS\\HW_J8_Kondratov\\Test Files\\" + ": ");
-    //    C:\Users\User\Documents\Learn_IBS\HW_J8_Kondratov\Test Files\myjson.json
-        Scanner in = new Scanner(System.in);
-        String inputPath = in.nextLine();
-        if (!inputPath.isEmpty()) {
-            String firstSymbol = inputPath.substring(0, 2);
-            if (firstSymbol.equals("C:")) {
-                if (new File(inputPath).exists()) {
-                    run(inputPath);
-                } else {
-                    System.out.println("Адрес не верен");
-                    this.inputPath();
-                }
-            } else if (!inputPath.isEmpty()) {
-                path = System.getProperty("user.home") + "\\Documents\\Learn_IBS\\HW_J8_Kondratov\\Test Files\\" + inputPath;
-                System.out.println(path);
-                if (new File(path).exists()) {
-                    run(path);
-                } else {
-                    System.out.println("Имя файла не верно");
-                    this.inputPath();
-                }
-            }
-        } else {
-            this.inputPath();
-        }
 
-
-    }
 
     private void inputDataReader() {
         System.out.println("введите дату, чтобы узнать какие компании основаны с тех пор:");
-        if (jsonReader == null) {
-            inputPath();
-        }
+
 
         Scanner in = new Scanner(System.in);
         String inputDate = in.nextLine();
 
         String format = null;
         Date date = null;
-        SimpleDateFormat formatter = new SimpleDateFormat(dateType.TYPE1.getDataType());
+        SimpleDateFormat formatter = new SimpleDateFormat(DateType.TYPE1.getDateType());
 
-
-        if (inputDate.length() == dateType.TYPE1.getDataType().length()) {
-            if (inputDate.charAt(2) == dateType.TYPE1.getDataType().charAt(2)) {
-                format = dateType.TYPE1.getDataType();
-            } else if (inputDate.charAt(2) == dateType.TYPE2.getDataType().charAt(2))
-                format = dateType.TYPE2.getDataType();
-        } else if (inputDate.length() == dateType.TYPE3.getDataType().length()) {
-            if (inputDate.charAt(2) == dateType.TYPE3.getDataType().charAt(2)) {
-                format = dateType.TYPE3.getDataType();
+//dateType.TYPE1.getDataType()
+        if (inputDate.length() == DateType.TYPE1.getDateType().length()) {
+            if (inputDate.charAt(2) == DateType.TYPE1.getDateType().charAt(2)) {
+                format = DateType.TYPE1.getDateType();
+            } else if (inputDate.charAt(2) == DateType.TYPE2.getDateType().charAt(2))
+                format = DateType.TYPE2.getDateType();
+        } else if (inputDate.length() == DateType.TYPE3.getDateType().length()) {
+            if (inputDate.charAt(2) == DateType.TYPE3.getDateType().charAt(2)) {
+                format = DateType.TYPE3.getDateType();
             } else if (inputDate.charAt(2) == "/".charAt(0))
-                format = dateType.TYPE4.getDataType();
+                format = DateType.TYPE4.getDateType();
         }
         try {
             date = new SimpleDateFormat(format).parse(inputDate);
@@ -91,9 +62,9 @@ public class Inputcomand {
         String formatDate = formatter.format(date);
 
 
-        jsonReader.organisationListAfterDate(formatDate, dateType.TYPE1);
+        jsonReader.organisationListAfterDate(formatDate, DateType.TYPE1);
 
-        inputCurrencies();
+
 
     }
 
@@ -101,7 +72,7 @@ public class Inputcomand {
         System.out.println("ведите валюту (USD, EU, RUB) : ");
         Scanner in = new Scanner(System.in);
         String inputCurrency = in.nextLine();
-        Currency.currency currency = null;
+        Currency currency = null;
 
         if (!inputCurrency.equals("RUB") &
                 !inputCurrency.equals("EU") &
@@ -117,11 +88,13 @@ public class Inputcomand {
                 break;
 
             case "EU":
-                currency = currency.RUB;
+                currency = currency.EU;
                 break;
             case "USD":
-                currency = currency.RUB;
+                currency = currency.USD;
                 break;
+            default: currency=currency.USD;
+            break;
         }
 
         jsonReader.getSecuritiesFromCurrency(currency);

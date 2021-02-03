@@ -1,6 +1,5 @@
 package DateHelper;
 
-import DateHelper.DateType.dateType;
 import Model.Organisations;
 
 import java.text.DateFormat;
@@ -12,16 +11,16 @@ import java.util.Date;
 
 
 public class DateHelper {
-    public String dateConverter(String inputDate, dateType inputformat, dateType outputformat) {
+    public String dateConverter(String inputDate, DateType inputformat, DateType outputformat) {
         String formatDate = "00.00.0000";
         Date date = null;
 
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat(inputformat.getDataType());//задаю формат даты на входе
+            SimpleDateFormat formatter = new SimpleDateFormat(inputformat.getDateType());//задаю формат даты на входе
 
             date = formatter.parse(inputDate); //парсю входный стринг даты
 
-            SimpleDateFormat formatForDateNow = new SimpleDateFormat(outputformat.getDataType()); //задаю формат на выходе
+            SimpleDateFormat formatForDateNow = new SimpleDateFormat(outputformat.getDateType()); //задаю формат на выходе
 
             formatDate = formatForDateNow.format(date);
 
@@ -33,14 +32,14 @@ public class DateHelper {
         return formatDate;
     }
 
-    public boolean stillValid(String inputDate, dateType dataType) {
+    public boolean stillValid(String inputDate, DateType dataType) {
 
         Boolean b = false;
         Date date;
         LocalDate localDate = LocalDate.now();
         Date localdate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        DateFormat dateFormat = new SimpleDateFormat(dataType.getDataType());
+        DateFormat dateFormat = new SimpleDateFormat(dataType.getDateType());
 
 
         try {
@@ -58,11 +57,11 @@ public class DateHelper {
 
     }
 
-    public boolean foundationAfterDate(String inputDate, dateType inputType, Organisations organisations) {
+    public boolean foundationAfterDate(String inputDate, DateType inputType, Organisations organisations) {
 
         Boolean b = false;
 
-        SimpleDateFormat formatter = new SimpleDateFormat(inputType.getDataType());
+        SimpleDateFormat formatter = new SimpleDateFormat(inputType.getDateType());
 
         try {
             Date date = formatter.parse(inputDate);

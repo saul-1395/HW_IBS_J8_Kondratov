@@ -1,20 +1,19 @@
 package DateHelper;
 
-public class DateType {
 
-
-    public enum dateType {
+    public enum DateType {
         TYPE1("dd.MM.yyyy"), TYPE2("dd/MM/yyyy"), TYPE3("dd.MM.yy"), TYPE4("dd/MM/yy");
 
-        private final String dataType;
+        private String dateType;
 
-        dateType(String dataType) {
-            this.dataType = dataType;
+        DateType(String dateType) {
+            this.dateType = dateType;
         }
 
-        public String getDataType() {
-            return dataType;
+
+        public String getDateType() {
+            return dateType;
         }
     }
 
-}
+
