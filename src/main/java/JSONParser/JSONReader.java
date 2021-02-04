@@ -79,29 +79,22 @@ public class JSONReader {
             getJSONlist();
         }
 
-        final long[] counter = {0l};
-        long count = 0l;
-        list.stream().filter(y -> {
-            counter[0] = counter[0] + Arrays.stream(y.getOrganisations().getSecurities())
+        long actualSecurites =0l;
+
+        actualSecurites = list.stream().map(y -> {
+            long l = Arrays.stream(y.getOrganisations().getSecurities())
                     .filter(x -> dateHelper.stillValid(x.getTerminate(), DateType.TYPE1))
-                    .map(x -> {
+                    .peek(x -> {
                         String s = "Бумага: " + x.getName() + " актуально до: " +
                                 dateHelper.dateConverter(x.getTerminate(), DateType.TYPE1, DateType.TYPE2) + " владелец: " + y.getOrganisations().getName();
                         System.out.println(s);
-                        return s;
                     })
                     .count();
 
-            return true;
-        }).count();
+            return l;
+        }).mapToLong(l->l.longValue()).sum();
 
+        System.out.println("Всего актуальных бумаг: " + actualSecurites);
 
-
-        for (long l : counter) {
-            count += l;
-        }
-        System.out.println("всего активных бумаг: " + count);
     }
-
-
 }
